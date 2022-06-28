@@ -7,6 +7,15 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <string name="html_code">
+        &lt;html&gt;
+            &lt;body&gt;
+                &lt;h1&gt;Hello server&lt;/h1&gt;;
+                &lt;p&gt;Hello World!&lt;/p&gt;
+            &lt;body&gt;
+        &lt;html&gt;
+    </string>
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
