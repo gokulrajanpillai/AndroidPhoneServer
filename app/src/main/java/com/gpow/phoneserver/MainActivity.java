@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -65,18 +66,16 @@ public class MainActivity extends AppCompatActivity {
     private void configureServerBtn() {
         pwrBtn = findViewById(R.id.pwr_btn);
         pwrBtn.setOnClickListener(view -> {
-            ColorDrawable colorDrawable = (ColorDrawable) pwrBtn.getBackground();
-            if (colorDrawable instanceof ColorDrawable) {
-                int color = ((ColorDrawable) colorDrawable).getColor();
-                if (color == getResources().getColor(R.color.green)) {
-                    pwrBtn.setBackgroundColor(getResources().getColor(R.color.red));
-                    showToast("Stopped Server!");
-                    stopServer();
-                } else {
-                    pwrBtn.setBackgroundColor(getResources().getColor(R.color.green));
-                    showToast("Started Server!");
-                    startServer();
-                }
+            if (pwrBtn.isSelected()) {
+                pwrBtn.setSelected(false);
+                pwrBtn.setImageResource(R.drawable.ic_pwr_btn_off);
+                showToast("Stopped Server!");
+                stopServer();
+            } else {
+                pwrBtn.setSelected(true);
+                pwrBtn.setImageResource(R.drawable.ic_pwr_btn_on);
+                showToast("Started Server!");
+                startServer();
             }
         });
     }
