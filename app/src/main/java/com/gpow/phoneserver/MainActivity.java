@@ -3,6 +3,7 @@ package com.gpow.phoneserver;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiManager;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton pwrBtn;
     private TextView htmlCodeTv;
+    private TextView serverStatus;
 
     private int PORT_NUMBER = 8080;
     private PhoneServer server = null;
@@ -65,16 +67,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void configureServerBtn() {
         pwrBtn = findViewById(R.id.pwr_btn);
+        serverStatus = findViewById(R.id.server_status);
         pwrBtn.setOnClickListener(view -> {
             if (pwrBtn.isSelected()) {
                 pwrBtn.setSelected(false);
+                pwrBtn.setBackgroundColor(Color.BLACK);
                 pwrBtn.setImageResource(R.drawable.ic_pwr_btn_off);
-                showToast("Stopped Server!");
+                serverStatus.setText("HTML server not running");
+                // showToast("Stopped Server!");
                 stopServer();
             } else {
                 pwrBtn.setSelected(true);
+                pwrBtn.setBackgroundColor(Color.WHITE);
                 pwrBtn.setImageResource(R.drawable.ic_pwr_btn_on);
-                showToast("Started Server!");
+                serverStatus.setText("Running HTML server under: " + wifiIpAddress() + ":" + PORT_NUMBER);
+                // showToast("Started Server!");
                 startServer();
             }
         });
